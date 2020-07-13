@@ -1,0 +1,48 @@
+﻿// Updated 2020
+// Modified on April 2020 by Rombout (https://https://github.com/schroef/AnimDessin2)
+
+// Updated 2020
+// Modified on April 2020 by Rombout (https://https://github.com/schroef/AnimDessin2)
+
+#target photoshop;
+
+//Make Photoshop the front most application
+app.bringToFront();
+docRef = app.activeDocument;
+
+// Call main function from getselected, we can reuse scripts
+var ScriptFilePath = Folder($.fileName).parent.fsName;
+$.evalFile(new File(ScriptFilePath + '/AnimD2_applyToAllLayers.jsx'));
+
+//
+//==================== AnimD2_gotoInTimeLine ==============
+//
+function AnimD2_gotoInTimeLine() {
+    ErrStrs = {};
+    ErrStrs.USER_CANCELLED = localize("$$$/ScriptingSupport/Error/UserCancelled=User cancelled the operation");
+    try {
+        app.runMenuItem(stringIDToTypeID('timelineGoToTime'));
+
+    // Allows for cancel without feedback message
+    } catch(e){
+        if (e.toString().indexOf(ErrStrs.USER_CANCELLED)!=-1) {;}
+        else{alert(localize("$$$/ScriptingSupport/Error/CommandNotAvailable=The command is currently not available"));}
+  }
+};
+
+//=========================================
+// AnimD2_gotoInTimeLine.main
+//=========================================
+//
+
+AnimD2_gotoInTimeLine.main = function() {
+    AnimD2_gotoInTimeLine();
+};
+
+//AnimD2_gotoInTimeLine.main();
+app.activeDocument.suspendHistory(localize(locGoToInTimeline), 'AnimD2_gotoInTimeLine.main()');
+
+// EOF
+
+"AnimD2_gotoInTimeLine.jsx"
+// EOF

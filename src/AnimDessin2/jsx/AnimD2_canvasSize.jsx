@@ -1,1 +1,63 @@
-﻿// Copyright 2014// Compiled (via JavascriptListener or ActionToJavascript Xtools…) by Stéphane Baril// enable double clicking from the Finder or Explorer#target photoshop//Make Photoshop the front most applicationapp.bringToFront();///////////////////////////////////////////////////// SETUP//////////////////////////////////////////////////////////////////////////////////////////////////////// MAIN////////////////////////////////////////////////////////////////////////////////////////////////////////FUNCTIONS///////////////////////////////////////////////////ErrStrs = {};ErrStrs.USER_CANCELLED=localize("$$$/ScriptingSupport/Error/UserCancelled=User cancelled the operation");try {    var idCnvS = charIDToTypeID( 'CnvS' );    executeAction( idCnvS, undefined, DialogModes.ALL );    }catch(e){    if (e.toString().indexOf(ErrStrs.USER_CANCELLED)!=-1) {;}     else{alert(localize("$$$/ScriptingSupport/Error/CommandNotAvailable=The command is currently not available"));}    }//==================================================================================cTID = function(s) { return app.charIDToTypeID(s); };sTID = function(s) { return app.stringIDToTypeID(s); };////==================== AnimD2_fitScreen ==============//function AnimD2_fitScreen() {  // Select  function step1(enabled, withDialog) {    if (enabled != undefined && !enabled)      return;    var dialogMode = (withDialog ? DialogModes.ALL : DialogModes.NO);    var desc1 = new ActionDescriptor();    var ref1 = new ActionReference();    ref1.putEnumerated(cTID('Mn  '), cTID('MnIt'), cTID('FtOn'));    desc1.putReference(cTID('null'), ref1);    executeAction(cTID('slct'), desc1, dialogMode);  };  step1();      // Select};//=========================================//                    AnimD2_fitScreen.main//=========================================//AnimD2_fitScreen.main = function () {  AnimD2_fitScreen();};AnimD2_fitScreen.main();// EOF"AnimD2_fitScreen.jsx"// EOF
+﻿// Copyright 2014
+// Compiled (via JavascriptListener or ActionToJavascript Xtools…) by Stéphane Baril
+
+// Updated 2020
+// Modified on April 2020 by Rombout (https://https://github.com/schroef/AnimDessin2)
+
+// enable double clicking from the Finder or Explorer
+#target photoshop
+
+//Make Photoshop the front most application
+app.bringToFront();
+docRef = app.activeDocument;
+
+// Call main function from getselected, we can reuse scripts
+var ScriptFilePath = Folder($.fileName).parent.fsName;
+$.evalFile(new File(ScriptFilePath + '/AnimD2_applyToAllLayers.jsx'));
+
+///////////////////////////////////////////////////
+// SETUP
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+// MAIN
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//FUNCTIONS
+///////////////////////////////////////////////////
+
+//
+//==================== AnimD2_canvasSize ==============
+//
+function AnimD2_canvasSize() {
+    ErrStrs = {};
+    ErrStrs.USER_CANCELLED=localize("$$$/ScriptingSupport/Error/UserCancelled=User cancelled the operation");
+    try {
+        var idCnvS = charIDToTypeID('CnvS');
+        executeAction(idCnvS, undefined, DialogModes.ALL);
+
+    // Allows for cancel without feedback message
+    } catch(e){
+        if (e.toString().indexOf(ErrStrs.USER_CANCELLED)!=-1) {;}
+        else{alert(localize("$$$/ScriptingSupport/Error/CommandNotAvailable=The command is currently not available"));}
+  }
+};
+
+
+
+//=========================================
+// AnimD2_canvasSize.main
+//=========================================
+//
+
+AnimD2_canvasSize.main = function() {
+    AnimD2_canvasSize();
+};
+
+app.activeDocument.suspendHistory(localize(locCanvasSize), 'AnimD2_canvasSize.main()');
+
+// EOF
+
+"AnimD2_canvasSize.jsx"
+// EOF

@@ -1,1 +1,95 @@
-﻿// Copyright 2013// Compiled (via JavascriptListener or ActionToJavascript Xtools…) by Stéphane Baril// enable double clicking from the Finder or Explorer#target photoshop//Make Photoshop the front most applicationapp.bringToFront();///////////////////////////////////////////////////// SETUP//////////////////////////////////////////////////////////////////////////////////////////////////////// MAIN////////////////////////////////////////////////////////////////////////////////////////////////////////FUNCTIONS///////////////////////////////////////////////////function colorRed() {    // =======================================================    var idsetd = charIDToTypeID( "setd" );        var desc989 = new ActionDescriptor();        var idnull = charIDToTypeID( "null" );            var ref343 = new ActionReference();            var idPrpr = charIDToTypeID( "Prpr" );            var idLefx = charIDToTypeID( "Lefx" );            ref343.putProperty( idPrpr, idLefx );            var idLyr = charIDToTypeID( "Lyr " );            var idOrdn = charIDToTypeID( "Ordn" );            var idTrgt = charIDToTypeID( "Trgt" );            ref343.putEnumerated( idLyr, idOrdn, idTrgt );        desc989.putReference( idnull, ref343 );        var idT = charIDToTypeID( "T   " );            var desc990 = new ActionDescriptor();            var idScl = charIDToTypeID( "Scl " );            var idPrc = charIDToTypeID( "#Prc" );            desc990.putUnitDouble( idScl, idPrc, 100.000000 );            var idSoFi = charIDToTypeID( "SoFi" );                var desc991 = new ActionDescriptor();                var idenab = charIDToTypeID( "enab" );                desc991.putBoolean( idenab, true );                var idMd = charIDToTypeID( "Md  " );                var idBlnM = charIDToTypeID( "BlnM" );                var idNrml = charIDToTypeID( "Nrml" );                desc991.putEnumerated( idMd, idBlnM, idNrml );                var idOpct = charIDToTypeID( "Opct" );                var idPrc = charIDToTypeID( "#Prc" );                desc991.putUnitDouble( idOpct, idPrc, 100.000000 );                var idClr = charIDToTypeID( "Clr " );                    var desc992 = new ActionDescriptor();                    var idRd = charIDToTypeID( "Rd  " );                    desc992.putDouble( idRd, 255.000000 );                    var idGrn = charIDToTypeID( "Grn " );                    desc992.putDouble( idGrn, 0.000000 );                    var idBl = charIDToTypeID( "Bl  " );                    desc992.putDouble( idBl, 0.000000 );                var idRGBC = charIDToTypeID( "RGBC" );                desc991.putObject( idClr, idRGBC, desc992 );            var idSoFi = charIDToTypeID( "SoFi" );            desc990.putObject( idSoFi, idSoFi, desc991 );        var idLefx = charIDToTypeID( "Lefx" );        desc989.putObject( idT, idLefx, desc990 );    executeAction( idsetd, desc989, DialogModes.NO );    // =======================================================    var idsetd = charIDToTypeID( "setd" );        var desc26 = new ActionDescriptor();        var idnull = charIDToTypeID( "null" );            var ref19 = new ActionReference();            var idLyr = charIDToTypeID( "Lyr " );            var idOrdn = charIDToTypeID( "Ordn" );            var idTrgt = charIDToTypeID( "Trgt" );            ref19.putEnumerated( idLyr, idOrdn, idTrgt );        desc26.putReference( idnull, ref19 );        var idT = charIDToTypeID( "T   " );            var desc27 = new ActionDescriptor();            var idClr = charIDToTypeID( "Clr " );            var idClr = charIDToTypeID( "Clr " );            var idRd = charIDToTypeID( "Rd  " );            desc27.putEnumerated( idClr, idClr, idRd );        var idLyr = charIDToTypeID( "Lyr " );        desc26.putObject( idT, idLyr, desc27 );    executeAction( idsetd, desc26, DialogModes.NO );};//=========================================//                    colorRed.main//=========================================//colorRed.main = function () {  colorRed();};app.activeDocument.suspendHistory("Colorize the Video Frame in Red", 'colorRed.main()');
+﻿// Copyright 2013
+// Compiled (via JavascriptListener or ActionToJavascript Xtools…) by Stéphane Baril
+
+// Updated 2020
+// Modified on April 2020 by Rombout (https://https://github.com/schroef/AnimDessin2)
+
+// enable double clicking from the Finder or Explorer
+#target photoshop
+
+//Make Photoshop the front most application
+app.bringToFront();
+docRef = app.activeDocument;
+
+// Call main function from getselected, we can reuse scripts
+var ScriptFilePath = Folder($.fileName).parent.fsName;
+$.evalFile(new File(ScriptFilePath + '/AnimD2_applyToAllLayers.jsx'));
+
+///////////////////////////////////////////////////
+// SETUP
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+// MAIN
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//FUNCTIONS
+///////////////////////////////////////////////////
+
+function cTID(s) {return app.charIDToTypeID(s);};
+function sTID(s) {return app.stringIDToTypeID(s);};
+
+function colorRed() {
+
+    ErrStrs = {}; 
+    ErrStrs.USER_CANCELLED=localize("$$$/ScriptingSupport/Error/UserCancelled=User cancelled the operation");
+    // Select
+    try {
+        // =======================================================
+        // Add Red Overlay to Later
+        var desc30 = new ActionDescriptor();
+        var ref10 = new ActionReference();
+        ref10.putProperty(cTID('Prpr'), cTID('Lefx'));
+        ref10.putEnumerated(cTID('Lyr '), cTID('Ordn'), cTID('Trgt'));
+        desc30.putReference(cTID('null'), ref10);
+        var desc31 = new ActionDescriptor();
+        desc31.putUnitDouble(cTID('Scl '), cTID('#Prc'), 100.000000);
+        var desc32 = new ActionDescriptor();
+        desc32.putBoolean(cTID('enab'), true);
+        desc32.putBoolean(sTID('present'), true);
+        desc32.putBoolean(sTID('showInDialog'), true);
+        desc32.putEnumerated(cTID('Md  '), cTID('BlnM'), cTID('Nrml'));
+        var desc33 = new ActionDescriptor();
+        desc33.putDouble(cTID('Rd  '), 255.000000);
+        desc33.putDouble(cTID('Grn '), 0.000000);
+        desc33.putDouble(cTID('Bl  '), 0.000000);
+        desc32.putObject(cTID('Clr '), cTID('RGBC'), desc33);
+        desc32.putUnitDouble(cTID('Opct'), cTID('#Prc'), 100.000000);
+        desc31.putObject(cTID('SoFi'), cTID('SoFi'), desc32);
+        desc30.putObject(cTID('T   '), cTID('Lefx'), desc31);
+        executeAction(cTID('setd'), desc30, DialogModes.NO);
+
+        // =======================================================
+        // Set Layer Color to Red
+        var desc24 = new ActionDescriptor();
+        var ref9 = new ActionReference();
+        ref9.putEnumerated(cTID('Lyr '), cTID('Ordn'), cTID('Trgt'));
+        desc24.putReference(cTID('null'), ref9);
+        var desc25 = new ActionDescriptor();
+        desc25.putEnumerated(cTID('Clr '), cTID('Clr '), cTID('Rd  '));
+        desc24.putObject(cTID('T   '), cTID('Lyr '), desc25);
+        executeAction(cTID('setd'), desc24, DialogModes.NO);
+
+        // =======================================================
+        // Collaps FX for cleaner look
+        var desc41 = new ActionDescriptor();
+        executeAction( sTID('collapseAllGroupsEvent'), desc41, DialogModes.NO );
+
+    // Allows for cancel without feedback message
+    } catch(e){
+        if (e.toString().indexOf(ErrStrs.USER_CANCELLED)!=-1) {;}
+        else{alert(localize("$$$/ScriptingSupport/Error/CommandNotAvailable=The command is currently not available"));}
+  }
+};
+
+//=========================================
+// colorRed.main
+//=========================================
+//
+
+colorRed.main = function() {
+    applyToAllLayers(colorRed);
+};
+
+app.activeDocument.suspendHistory(localize(locColorRed), 'colorRed.main()');

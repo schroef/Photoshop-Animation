@@ -2,8 +2,10 @@
 
 @font-face {
   font-family: "ad2toolbar";
-  src:url("fonts/ad2toolbar.eot");
-  src:url("fonts/ad2toolbar.eot?#iefix") format("embedded-opentype"),
+  /* src:url("fonts/ad2toolbar.eot");
+  src:url("fonts/ad2toolbar.eot?#iefix") format("embedded-opentype"), */
+  src:url("fonts/ad2toolbar.otf");
+  src:url("fonts/ad2toolbar.otf?#iefix") format("opentype"),
     url("fonts/ad2toolbar.woff") format("woff"),
     url("fonts/ad2toolbar.ttf") format("truetype"),
     url("fonts/ad2toolbar.svg#ad2toolbar") format("svg");
@@ -53,7 +55,7 @@
 .icon-expoplus:before {
   content: "g";
 }
-.icon-inbetweennew:before {
+.icon-inbetweencreat:before {
   content: "i";
 }
 .icon-inbetweennext:before {
@@ -74,6 +76,10 @@
 .icon-newvideogroup:before {
   content: "m";
 }
+.icon-framerename:before {
+  content: "z";
+}
+
 .icon-onionskinsettings:before {
   content: "n";
 }
@@ -107,9 +113,28 @@
 .icon-canvassize:before {
   content: "x";
 }
+.icon-toggleFavorite:before {
+  content: "y";
+}
 .icon-onionskin:before {
   content: "o";
 }
 .icon-colornone:before {
   content: "a";
 }
+.icon-navileft:before {
+  content: "A";
+}
+.icon-naviright:before {
+  content: "B";
+}
+.icon-playheadsplit:before {
+  content: "C";
+}
+.icon-playheadprev:before {
+  content: "D";
+}
+.icon-playheadnext:before {
+  content: "E";
+}
+

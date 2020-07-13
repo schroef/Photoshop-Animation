@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest 
-    Version="5.0" 
-    ExtensionBundleId="com.sbaril.animdessin2" 
-    ExtensionBundleVersion="2.2.0"
-    ExtensionBundleName="AnimDessin2" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest Version="5.0" ExtensionBundleId="com.sbaril.animdessin2" ExtensionBundleVersion="2.2.1" ExtensionBundleName="AnimDessin2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <Author>Stéphane Baril</Author>
-    <Abstract>"AnimDessin2" is an Photoshop extension focused on handmade frame-by-frame animation (cel-animation). The Panel can be found under the menu Windows > Extensions > "AnimDessin2"</Abstract>
+  <Author>Stéphane Baril</Author>
+  <Abstract>"AnimDessin2" is an Photoshop extension focused on handmade frame-by-frame animation (cel-animation). The Panel can be found under the menu Windows > Extensions > "AnimDessin2"</Abstract>
 
   <ExtensionList>
-    <Extension Id="com.sbaril.animdessin2.panel" Version="1.0" />
+    <Extension Id="com.sbaril.animdessin2.Panel" Version="1.0" />
+    <Extension Id="com.sbaril.animdessin2.Panel2" Version="1.0"/>
   </ExtensionList>
 
   <ExecutionEnvironment>
     <HostList>
-        <!-- Photoshop Versions:
+      <!-- Uncomment Host tags according to the apps you want your panel to support -->
+
+      <!-- Photoshop Versions:
             Photoshop CC        = 14.x  = CEP 4.x 
             Photoshop CC 2014   = 15.x  = CEP 5.x
             Photoshop CC 2015   = 16.x  = CEP 6.x
@@ -23,9 +22,9 @@
             Photoshop CC 2017   = 18.x  = CEP 7.x
             Photoshop CC 2018   = 19.x  = CEP 8.x
         -->
-        <Host Name="PHXS" Version="15.0" />
-        <Host Name="PHSP" Version="15.0" />
-        
+      <Host Name="PHXS" Version="15.0" />
+      <Host Name="PHSP" Version="15.0" />
+
     </HostList>
 
     <LocaleList>
@@ -38,18 +37,21 @@
   </ExecutionEnvironment>
 
   <DispatchInfoList>
-    <Extension Id="com.sbaril.animdessin2.panel">
+    <Extension Id="com.sbaril.animdessin2.Panel">
       <DispatchInfo >
-    
+
         <Resources>
           <MainPath>./index.html</MainPath>
           <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+          <CEFCommandLine>
+            <Parameter>--persist-session-cookies</Parameter>
+          </CEFCommandLine>
         </Resources>
-      
+
         <Lifecycle>
           <AutoVisible>true</AutoVisible>
         </Lifecycle>
-      
+
         <UI>
 
           <Type>Panel</Type>
@@ -57,17 +59,17 @@
 
           <Geometry>
             <Size>
-              <Height>45</Height>
+              <Height>30</Height>
               <Width>1000</Width>
             </Size>
             <MinSize>
-              <Height>40</Height>
-              <Width>50</Width>
+              <Height>30</Height>
+              <Width>35</Width>
             </MinSize>
-            <!--<MaxSize>
-              <Height>200</Height>
-              <Width>350</Width>
-            </MaxSize>-->
+            <MaxSize>
+              <Height>1400</Height>
+              <Width>2000</Width>
+            </MaxSize>
           </Geometry>
 
           <Icons>
@@ -76,8 +78,53 @@
             <Icon Type="Disabled">./icons/iconDisabled.png</Icon>
             <Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
             <Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
-          </Icons>  
-                  
+          </Icons>
+
+        </UI>
+      </DispatchInfo>
+    </Extension>
+    <Extension Id="com.sbaril.animdessin2.Panel2">
+      <DispatchInfo >
+
+        <Resources>
+          <MainPath>./toolsguide.html</MainPath>
+          <CEFCommandLine>
+            <Parameter>--persist-session-cookies</Parameter>
+          </CEFCommandLine>
+        </Resources>
+
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+
+        <UI>
+
+          <Type>Panel</Type>
+          <Menu>%PNL_Title_ToolGuide</Menu>
+
+          <Geometry>
+            <Size>
+              <Height>800</Height>
+              <Width>325</Width>
+            </Size>
+            <MinSize>
+              <Height>500</Height>
+              <Width>300</Width>
+            </MinSize>
+            <MaxSize>
+              <Height>1920</Height>
+              <Width>1080</Width>
+            </MaxSize>
+          </Geometry>
+
+          <Icons>
+            <Icon Type="Normal">./icons/iconNormal.png</Icon>
+            <Icon Type="RollOver">./icons/iconRollover.png</Icon>
+            <Icon Type="Disabled">./icons/iconDisabled.png</Icon>
+            <Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
+            <Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
+          </Icons>
+
         </UI>
       </DispatchInfo>
     </Extension>
